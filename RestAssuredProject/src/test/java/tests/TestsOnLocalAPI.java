@@ -15,12 +15,12 @@ public class TestsOnLocalAPI {
 		baseURI = "http://localhost:3000";
 		given().get("/users").then().statusCode(200).log().all();		
 	}
-	//@Test
+	@Test
 	public void post() {		
 		JSONObject request = new JSONObject();
-		request.put("firstName", "Thomas");
-		request.put("lastName", "Edison");
-		request.put("subjectID", 1);
+		request.put("firstName", "Albert");
+		request.put("lastName", "Einstein");
+		request.put("subjectID", 2);
 		baseURI = "http://localhost:3000";
 		given().
 			contentType(ContentType.JSON).
@@ -43,15 +43,14 @@ public class TestsOnLocalAPI {
 			accept(ContentType.JSON).
 			body(request.toJSONString()).
 		when().
-			put("/users/4").
+			put("/users/3").
 		then().
 			statusCode(200);
 	}
 	//@Test
 	public void patch() {		
 		JSONObject request = new JSONObject();
-		request.put("firstName", "Nikola");
-		request.put("lastName", "Tesla");
+		request.put("birthDate", "10 July 1856");
 		baseURI = "http://localhost:3000";
 		given().
 			contentType(ContentType.JSON). 
@@ -62,9 +61,10 @@ public class TestsOnLocalAPI {
 		then().
 			statusCode(200);
 	}
-	@Test
+	//@Test
 	public void delete() {
 		baseURI = "http://localhost:3000";
 		when().delete("users/4").then().statusCode(200);
 	}
+
 }
